@@ -1,0 +1,47 @@
+npx create-next-app --typescript
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+npm install react-icons
+
+
+npm install zustand
+
+npm install axios
+
+npm install react-hook-form
+
+npm install react-hot-toast
+
+
+npm install -D prisma
+npx prisma init 
+
+npx prisma db push
+
+npm install next-auth @prisma/client @next-auth/prisma-adapter
+npm install bcrypt
+npm install -D @types/bcrypt
+
+// npm install next-auth
+
+////////////////////////////////////////////////////////////////////
+npm install query-string
+
+npm install world-countries
+
+npm install react-select
+
+npm install leaflet
+npm install -D @types/leaflet
+npm install react-leaflet
+
+npm install next-cloudinary
+
+npm install date-fns
+
+npm install react-date-range
+npm install -D @types/react-date-range
+
+npm install react-spinners
