@@ -1,23 +1,17 @@
 import { Campaign, Contribution, User } from "@prisma/client";
 
-export type SafeCampaign = Omit<Campaign, "createdAt"> & {
-  createdAt: string;
-};
-
-export type SafeContribution = Omit<
-  Contribution, 
-  "createdAt" | "startDate" | "endDate" | "campaign"
-> & {
+export type SafeCampaign = Omit<Campaign, "createdAt" | "startDate" | "endDate"> & {
   createdAt: string;
   startDate: string;
   endDate: string;
+};
+
+export type SafeContribution = Omit<Contribution, "createdAt" | "campaign"> & {
+  createdAt: string;
   listing: SafeCampaign;
 };
 
-export type SafeUser = Omit<
-  User,
-  "createdAt" | "updatedAt" | "emailVerified"
-> & {
+export type SafeUser = Omit<User, "createdAt" | "updatedAt" | "emailVerified"> & {
   createdAt: string;
   updatedAt: string;
   emailVerified: string | null;

@@ -48,13 +48,14 @@ model Campaign {
   description   String
   imageSrc      String
   createdAt     DateTime @default(now())
+  type          String
   category      String
-  subCategory   String
   goalAmount    Int
   currentAmount Int
   locationValue String
+  startDate     DateTime
+  endDate       DateTime
   userId        String   @db.ObjectId
-  price         Int
 
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   contributions Contribution[]

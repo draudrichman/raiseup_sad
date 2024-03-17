@@ -8,6 +8,7 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
+import useCampaignModal from "@/app/hooks/useCampaignModal";
 
 interface UserMenuProps {
     currentUser?: SafeUser | null;
@@ -19,17 +20,27 @@ const UserMenu: React.FC<UserMenuProps> = ({
 }) => {
     const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
+    const campaignModal = useCampaignModal();
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, []);
 
+    const onStartCampaign = useCallback(() => {
+        if (!currentUser) {
+            return loginModal.onOpen();
+        }
+        // Open Campaign Modal
+        campaignModal.onOpen();
+
+    }, [currentUser, loginModal, campaignModal]);
+
     return (
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
                 <div
-                    onClick={() => { }}
+                    onClick={onStartCampaign}
                     className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
                 >
                     Start a campaign
@@ -65,6 +76,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 <MenuItem
                                     onClick={() => { }}
                                     label="Messages"
+                                />
+                                <MenuItem
+                                    onClick={campaignModal.onOpen}
+                                    label="Start a campaign"
                                 />
                                 <hr />
                                 <MenuItem
