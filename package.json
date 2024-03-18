@@ -19,6 +19,8 @@
     "next": "14.0.4",
     "next-auth": "^4.24.7",
     "next-cloudinary": "^6.3.0",
+    "pusher": "^5.2.0",
+    "pusher-js": "^8.4.0-rc2",
     "query-string": "^9.0.0",
     "react": "^18",
     "react-date-range": "^2.0.0-alpha.4",
@@ -29,6 +31,7 @@
     "react-leaflet": "^4.2.1",
     "react-select": "^5.8.0",
     "react-spinners": "^0.13.8",
+    "react-toastify": "^10.0.5",
     "world-countries": "^5.0.0",
     "zustand": "^4.5.2"
   },

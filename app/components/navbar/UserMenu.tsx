@@ -9,6 +9,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
 import useCampaignModal from "@/app/hooks/useCampaignModal";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
     currentUser?: SafeUser | null;
@@ -18,6 +19,7 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
     currentUser
 }) => {
+    const router = useRouter();
     const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
     const campaignModal = useCampaignModal();
@@ -31,7 +33,6 @@ const UserMenu: React.FC<UserMenuProps> = ({
         if (!currentUser) {
             return loginModal.onOpen();
         }
-        // Open Campaign Modal
         campaignModal.onOpen();
 
     }, [currentUser, loginModal, campaignModal]);
@@ -66,7 +67,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                     label="My campaigns"
                                 />
                                 <MenuItem
-                                    onClick={() => { }}
+                                    onClick={() => router.push('/favorites')}
                                     label="Favorites"
                                 />
                                 <MenuItem

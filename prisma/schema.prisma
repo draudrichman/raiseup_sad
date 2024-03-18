@@ -20,7 +20,7 @@ model User {
 
   accounts     Account[]
   campaigns    Campaign[]
-  reservations Contribution[]
+  contributions Contribution[]
 }
 
 model Account {

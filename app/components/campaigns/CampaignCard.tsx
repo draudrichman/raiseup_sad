@@ -73,7 +73,7 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
 
     return (
         <div
-            onClick={() => router.push(`/listings/${data.id}`)}
+            onClick={() => router.push(`/campaigns/${data.id}`)}
             className="col-span-1 cursor-pointer group"
         >
             {/* <div className="flex flex-col gap-2 w-full group-hover:scale-105 transition border-x border-y "> */}
@@ -83,7 +83,7 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
                         fill
                         className="object-cover h-full w-full "
                         src={data.imageSrc}
-                        alt="Listing"
+                        alt="Campaign Image"
                     />
                     <div className="absolute top-3 right-3">
                         <HeartButton
@@ -106,7 +106,7 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
                     </div>
 
                     <div className="flex justify-between">
-                        <div className="font-semibold">
+                        <div className="font-semibold truncate">
                             ৳{amount.currentAmount.toLocaleString()} raised of ৳{amount.goalAmount.toLocaleString()}
                         </div>
                         <div className="text-right right-0">
@@ -121,8 +121,8 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
                             bgColor="#34ca96"
                             isLabelVisible={false}
                             animateOnRender={true}
-                            height="6px"
-                            borderRadius="10px"
+                            height="8px"
+                            borderRadius="2px"
                         />
                     </div>
                     <div className="flex items-center text-neutral-500 mt-2 text-sm mb-5">

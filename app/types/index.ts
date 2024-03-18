@@ -8,7 +8,7 @@ export type SafeCampaign = Omit<Campaign, "createdAt" | "startDate" | "endDate">
 
 export type SafeContribution = Omit<Contribution, "createdAt" | "campaign"> & {
   createdAt: string;
-  listing: SafeCampaign;
+  campaign: SafeCampaign;
 };
 
 export type SafeUser = Omit<User, "createdAt" | "updatedAt" | "emailVerified"> & {

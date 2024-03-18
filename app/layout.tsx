@@ -8,6 +8,7 @@ import ToasterProvider from './providers/ToasterProvider'
 import LoginModal from './components/modals/LoginModal'
 import getCurrentUser from './actions/getCurrentUser'
 import CampaignModal from './components/modals/CampaignModal'
+import PusherNotification from './components/PusherNotification'
 
 const font = Nunito({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default async function RootLayout({
           <CampaignModal />
           <LoginModal />
           <RegisterModal />
+          <PusherNotification currentUser = {currentUser}/>
           {/* <SearchModal /> */}
           <Navbar currentUser={currentUser} />
         </ClientOnly>
