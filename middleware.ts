@@ -2,8 +2,8 @@ export { default } from "next-auth/middleware"
 
 export const config = { 
   matcher: [
-    "/favorites",
-    "/mycampaigns",
+    // "/favorites",
+    // "/mycampaigns",
     // "/backings",
   ]
 };
