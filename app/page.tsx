@@ -5,6 +5,8 @@ import getCampaigns, { ICampaignsParams } from "./actions/getCampaigns";
 import CampaignCard from "./components/campaigns/CampaignCard";
 import getCurrentUser from "./actions/getCurrentUser";
 
+export const dynamic = 'force-dynamic'
+
 interface HomeProps {
   searchParams: ICampaignsParams
 }
