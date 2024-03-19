@@ -24,7 +24,7 @@ const PusherNotification: React.FC<PusherNotificationProps> = ({
             // toast(currentUserID, {
             toast(data.message, {
                 position: "bottom-right",
-                autoClose: 5000,
+                autoClose: 10000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -44,7 +44,7 @@ const PusherNotification: React.FC<PusherNotificationProps> = ({
         <div>
             <ToastContainer
                 position="bottom-right"
-                autoClose={5000}
+                autoClose={10000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
