@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { Range } from "react-date-range";
 import CalendarPart from "../inputs/CalendarPart";
+import { types } from "../navbar/Categories";
 
 
 const initialDateRange = {
@@ -38,18 +39,6 @@ enum STEPS {
     GOAL = 6
 }
 
-export const types = [
-    {
-        label: 'Non-profit',
-        icon: PiHandshakeFill,
-        description: 'Championing the welfare and protection of animals, both domestic and wild, for a more compassionate world.',
-    },
-    {
-        label: 'Commercial',
-        icon: GiTakeMyMoney,
-        description: 'Supporting individuals facing medical challenges by funding treatment, care, and recovery efforts.',
-    },
-]
 
 const CampaignModal = () => {
     const router = useRouter();
@@ -125,7 +114,7 @@ const CampaignModal = () => {
             endDate: dateRange.endDate,
         })
             .then(() => {
-                toast.success('Campaign Launched!');
+                toast.success('Fundraiser launched!');
                 setDateRange(initialDateRange);
                 router.refresh();
                 reset();
@@ -159,7 +148,7 @@ const CampaignModal = () => {
     let bodyContent = (
         <div className="flex flex-col gap-8">
             <Heading
-                title="What kind of campaign would you like to start?"
+                title="What kind of fundraiser would you like to start?"
                 subtitle=""
             />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
@@ -170,6 +159,7 @@ const CampaignModal = () => {
                             selected={type === item.label}
                             label={item.label}
                             icon={item.icon}
+                            description={item.description}
                         />
                     </div>
                 ))}
@@ -220,8 +210,8 @@ const CampaignModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="Add a photo to your campaign"
-                    subtitle="Upload an image that represents your campaign."
+                    title="Add a photo to your fundraiser"
+                    subtitle="Upload an image that represents your fundraiser."
                 />
                 <ImageUpload
                     onChange={(value) => setCustomValue('imageSrc', value)}
@@ -235,8 +225,8 @@ const CampaignModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="How would you describe your campaign?"
-                    subtitle="Provide a short description that best describes your campaign to your audience."
+                    title="How would you describe your fundraiser?"
+                    subtitle="Provide a short description that best describes your fundraiser to your audience."
                 />
                 <Input
                     id="title"
@@ -264,7 +254,7 @@ const CampaignModal = () => {
             <div className="flex flex-col gap-8">
                 <Heading
                     title="Campaign Duration"
-                    subtitle="How many days will you be running your campaign for?"
+                    subtitle="How many days will you be running your fundraiser for?"
                 />
                 <CalendarPart
                     onChangeDate={(value) => setDateRange(value)}
@@ -305,7 +295,7 @@ const CampaignModal = () => {
             actionLabel={actionLabel}
             secondaryActionLabel={secondaryActionLabel}
             secondaryAction={step === STEPS.TYPE ? undefined : onBack}
-            title="Start a Campaign"
+            title="Start a fundraiser"
             body={bodyContent}
         />
     );

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import Container from "@/app/components/Container";
 import ClientOnly from "./components/ClientOnly";
 import EmptyState from "./components/EmptyState";
@@ -5,7 +7,6 @@ import getCampaigns, { ICampaignsParams } from "./actions/getCampaigns";
 import CampaignCard from "./components/campaigns/CampaignCard";
 import getCurrentUser from "./actions/getCurrentUser";
 
-export const dynamic = 'force-dynamic'
 
 interface HomeProps {
   searchParams: ICampaignsParams

@@ -8,9 +8,8 @@ import { useCallback, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import CountrySelect, { CountrySelectValue } from "../inputs/CountrySelect";
 import Heading from '../Heading';
-import { types } from './CampaignModal';
 import TypeInput from '../inputs/TypeInput';
-
+import { types } from '../navbar/Categories';
 
 enum STEPS {
     LOCATION = 0,
@@ -89,8 +88,8 @@ const SearchModal = () => {
     let bodyContent = (
         <div className="flex flex-col gap-8">
             <Heading
-                title="Where do you wanna go?"
-                subtitle="Find the perfect location!"
+                title="Find fundraisers by location"
+                subtitle=""
             />
             <CountrySelect
                 value={location}
@@ -105,17 +104,18 @@ const SearchModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="What kind of campaigns would you like to support?"
+                    title="What kind of fundraisers would you like to support?"
                     subtitle=""
                 />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
                     {types.map((item) => (
-                        <div key={item.label} className="col-span-1">
+                        <div key={item.label} className="col-span-1 h-25">
                             <TypeInput
                                 onClick={(type) => setType(item.label)}
                                 selected={type === item.label}
                                 label={item.label}
                                 icon={item.icon}
+                                description={item.description}
                             />
                         </div>
                     ))}
