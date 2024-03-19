@@ -1,19 +1,22 @@
 import Container from "@/app/components/Container";
 import ClientOnly from "./components/ClientOnly";
 import EmptyState from "./components/EmptyState";
-import getCampaigns from "./actions/getCampaigns";
+import getCampaigns, { ICampaignsParams } from "./actions/getCampaigns";
 import CampaignCard from "./components/campaigns/CampaignCard";
 import getCurrentUser from "./actions/getCurrentUser";
 
+interface HomeProps {
+  searchParams: ICampaignsParams
+}
 
-export default async function Home() {
-  const campaigns = await getCampaigns();
+const Home = async ({ searchParams }: HomeProps) => {
+  const campaigns = await getCampaigns(searchParams);
   const currentUser = await getCurrentUser();
 
   if (campaigns.length === 0) {
     return (
       <ClientOnly>
-        <EmptyState showReset/>
+        <EmptyState showReset />
       </ClientOnly>
     )
   }
@@ -37,3 +40,5 @@ export default async function Home() {
     </ClientOnly>
   )
 }
+
+export default Home;

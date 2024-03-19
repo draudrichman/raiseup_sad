@@ -9,6 +9,7 @@ import LoginModal from './components/modals/LoginModal'
 import getCurrentUser from './actions/getCurrentUser'
 import CampaignModal from './components/modals/CampaignModal'
 import PusherNotification from './components/PusherNotification'
+import SearchModal from './components/modals/SearchModal'
 
 const font = Nunito({ subsets: ['latin'] })
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
           <CampaignModal />
           <LoginModal />
           <RegisterModal />
+          <SearchModal />
           <PusherNotification currentUser = {currentUser}/>
           {/* <SearchModal /> */}
           <Navbar currentUser={currentUser} />

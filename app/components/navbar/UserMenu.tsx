@@ -63,11 +63,11 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         {currentUser ? (
                             <>
                                 <MenuItem
-                                    onClick={() => { }}
+                                    onClick={() => { router.push('/mycampaigns'); toggleOpen() }}
                                     label="My campaigns"
                                 />
                                 <MenuItem
-                                    onClick={() => router.push('/favorites')}
+                                    onClick={() => { router.push('/favorites'); toggleOpen() }}
                                     label="Favorites"
                                 />
                                 <MenuItem
@@ -79,23 +79,32 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                     label="Messages"
                                 />
                                 <MenuItem
-                                    onClick={campaignModal.onOpen}
+                                    onClick={() => {
+                                        campaignModal.onOpen();
+                                        toggleOpen();
+                                    }}
                                     label="Start a campaign"
                                 />
                                 <hr />
                                 <MenuItem
-                                    onClick={() => signOut()}
+                                    onClick={() => { signOut(); toggleOpen() }}
                                     label="Logout"
                                 />
                             </>
                         ) : (
                             <>
                                 <MenuItem
-                                    onClick={loginModal.onOpen}
+                                    onClick={() => {
+                                        loginModal.onOpen();
+                                        toggleOpen();
+                                    }}
                                     label="Login"
                                 />
                                 <MenuItem
-                                    onClick={registerModal.onOpen}
+                                    onClick={() => {
+                                        registerModal.onOpen();
+                                        toggleOpen();
+                                    }}
                                     label="Sign Up"
                                 />
                             </>

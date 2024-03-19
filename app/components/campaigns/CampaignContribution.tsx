@@ -43,8 +43,7 @@ const CampaignContribution: React.FC<CampaignContributionProps> = ({
     });
 
     const percentage = useMemo(() => {
-        return currentAmount / goalAmount * 100
-            ;
+        return currentAmount / goalAmount * 100;
     }, [goalAmount, currentAmount]);
 
     const daysRemaining = useMemo(() => {
@@ -52,6 +51,13 @@ const CampaignContribution: React.FC<CampaignContributionProps> = ({
         const remainingDays = Math.ceil(remainingTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
         return remainingDays >= 0 ? remainingDays : -1;
     }, [endDate]);
+
+    const handleDonate = async (data: FieldValues) => {
+        setIsLoading(true);
+        await onSubmit(Number(data.contributionAmount));
+        setIsLoading(false);
+        reset(); // Reset the form values after submission
+    };
 
     return (
         <div className="flex flex-col gap-2 w-full group-hover:scale-105 transition border-x border-y">
@@ -97,8 +103,9 @@ const CampaignContribution: React.FC<CampaignContributionProps> = ({
                         <Button
                             disabled={disabled}
                             label="Donate"
-                            onClick={handleSubmit(() => onSubmit(Number(watch('contributionAmount'))))}
+                            onClick={handleSubmit(handleDonate)}
                         />
+
                     </div>
                 </div>
             </div>

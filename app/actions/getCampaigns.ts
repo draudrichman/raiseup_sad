@@ -1,30 +1,59 @@
 import prisma from "@/app/libs/prismadb";
 
-function shuffleArray<T>(array: T[]): T[] {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
+
+export interface ICampaignsParams {
+    userId?: string;
+    locationValue?: string;
+    type?: string;
+    searchQuery?: string;
+    category?: string;
 }
 
-export default async function getCampaigns() {
+
+export default async function getCampaigns(params: ICampaignsParams) {
     try {
+        const { userId, locationValue, type, searchQuery, category } = params;
+
+        let query: any = {};
+
+        if (userId) {
+            query.userId = userId;
+        }
+
+        if (category) {
+            query.category = category;
+        }
+
+        if (locationValue) {
+            query.locationValue = locationValue;
+        }
+
+        if (type) {
+            query.type = type;
+        }
+        
+
+        if (searchQuery) {
+            query.OR = [
+                { title: { contains: searchQuery, mode: 'insensitive' } },
+                { description: { contains: searchQuery, mode: 'insensitive' } },
+            ];
+        }
+
+
         const campaigns = await prisma.campaign.findMany({
+            where: query,
             orderBy: {
                 createdAt: 'desc'
             }
         });
 
-        const shuffledCampaigns = campaigns.map((campaign) => ({
+        const SafeCampaigns = campaigns.map((campaign) => ({
             ...campaign,
             createdAt: campaign.createdAt.toISOString(),
             startDate: campaign.startDate.toISOString(),
             endDate: campaign.endDate.toISOString()
         }))
-
-        const SafeCampaigns = shuffleArray(shuffledCampaigns);
 
         return SafeCampaigns;
     } catch (error: any) {
