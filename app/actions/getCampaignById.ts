@@ -19,6 +19,12 @@ export default async function getCampaignById(
       }
     });
 
+    const numberOfContributions = await prisma.contribution.count({
+      where: {
+          campaignId: campaignId,
+      },
+  });
+
     if (!campaign) {
       return null;
     }
@@ -33,7 +39,8 @@ export default async function getCampaignById(
         createdAt: campaign.user.createdAt.toString(),
         updatedAt: campaign.user.updatedAt.toString(),
         emailVerified: campaign.user.emailVerified?.toString() || null,
-      }
+      },
+      numberOfContributions
     };
   } catch (error: any) {
     throw new Error(error);

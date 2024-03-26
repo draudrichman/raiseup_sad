@@ -26,6 +26,7 @@ const CampaignPage = async ({ params }: { params: IParams }) => {
                 campaign={campaign}
                 currentUser={currentUser}
                 // contributions={contributions}
+                noOfContributions={campaign.numberOfContributions}
             />
         </ClientOnly>
     );

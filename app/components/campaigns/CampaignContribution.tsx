@@ -14,6 +14,7 @@ interface CampaignContributionProps {
     endDate: string;
     currentAmount: number;
     goalAmount: number;
+    noOfContributions?: number;
 }
 
 const CampaignContribution: React.FC<CampaignContributionProps> = ({
@@ -22,7 +23,8 @@ const CampaignContribution: React.FC<CampaignContributionProps> = ({
     startDate,
     endDate,
     currentAmount,
-    goalAmount
+    goalAmount,
+    noOfContributions
 }) => {
 
     const [isLoading, setIsLoading] = useState(false);
@@ -64,7 +66,9 @@ const CampaignContribution: React.FC<CampaignContributionProps> = ({
             <div className="mx-3 mt-5">
                 <div className="flex justify-between">
                     <div className="font-semibold">
-                        ৳{currentAmount.toLocaleString()} raised of ৳{goalAmount.toLocaleString()}
+                        <span>৳</span>
+                        <span className="text-2xl font-bold">{currentAmount.toLocaleString()}</span>
+                        <span className="text-gray-500"> raised of ৳{goalAmount.toLocaleString()}</span>
                     </div>
                     <div className="text-right right-0">
                         {Math.floor(percentage ?? 0)}%
@@ -84,10 +88,16 @@ const CampaignContribution: React.FC<CampaignContributionProps> = ({
                 </div>
                 <div className="flex items-center text-neutral-500 mt-2 text-sm mb-5">
                     <FaClock size={16} className="m-0" />
-                    <div className="ml-2 mt-0 mb-0">
-                        {daysRemaining === -1 ? "Ended" : `${daysRemaining} days left`}
+                    <div className="ml-2 mt-0 mb-0 flex justify-between w-full">
+                        <div>
+                            {daysRemaining === -1 ? "Ended" : `${daysRemaining} days left`}
+                        </div>
+                        <div>
+                            {noOfContributions} donations
+                        </div>
                     </div>
                 </div>
+
                 <div className="p-4">
                     <Input
                         id="contributionAmount"

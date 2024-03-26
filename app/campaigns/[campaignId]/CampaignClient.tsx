@@ -19,14 +19,17 @@ interface CampaignClientProps {
         user: SafeUser
     };
     currentUser?: SafeUser | null;
+    noOfContributions?: number
 }
 
 const CampaignClient: React.FC<CampaignClientProps> = ({
     campaign,
-    currentUser
+    currentUser,
+    noOfContributions
 }) => {
     const loginModal = useLoginModal();
     const router = useRouter();
+
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -88,6 +91,7 @@ const CampaignClient: React.FC<CampaignClientProps> = ({
                                 endDate={campaign.endDate}
                                 currentAmount={campaign.currentAmount}
                                 goalAmount={campaign.goalAmount}
+                                noOfContributions={noOfContributions}
                             />
                         </div>
                     </div>
