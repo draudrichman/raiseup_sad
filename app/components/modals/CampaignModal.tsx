@@ -113,8 +113,14 @@ const CampaignModal = () => {
             startDate: dateRange.startDate,
             endDate: dateRange.endDate,
         })
-            .then(() => {
-                toast.success('Fundraiser launched!');
+            .then((response) => {
+                if (response.data === false){
+                    toast.error('Fundraiser rejected.');
+                }
+                else{
+                    toast.success('Fundraiser launched!');
+                }
+
                 setDateRange(initialDateRange);
                 router.refresh();
                 reset();
@@ -127,7 +133,7 @@ const CampaignModal = () => {
             .finally(() => {
                 setIsLoading(false);
             })
-    }
+        }
 
     const actionLabel = useMemo(() => {
         if (step === STEPS.GOAL) {
