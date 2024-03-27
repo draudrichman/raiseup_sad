@@ -15,6 +15,12 @@ const PusherNotification: React.FC<PusherNotificationProps> = ({
     currentUser
 }) => {
     const router = useRouter();
+    const playDonationSound = () => {
+        const donationSound = new Audio('/sounds/sound2.mp3');
+        donationSound.play().catch((error) => {
+            console.error('Failed to play sound:', error);
+        });
+    };
     useEffect(() => {
         const channel = pusherClient.subscribe(currentUser?.id || "none");
         // const channel = pusherClient.subscribe("primary-channel");
@@ -23,17 +29,18 @@ const PusherNotification: React.FC<PusherNotificationProps> = ({
         channel.bind('donation-notify', function (data: any) {
 
             // toast(currentUserID, {
-                toast(data.message, {
-                    position: "bottom-right",
-                    autoClose: 10000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                router.refresh();
+            playDonationSound();
+            toast(data.message, {
+                position: "bottom-right",
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            router.refresh();
         });
 
         return () => {
